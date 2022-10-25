@@ -23,7 +23,7 @@ VALUES
     ("products", "products", "food"),
     ("transport", "transport", "metro, taxi, fuel"),
     ("self needs", "self needs", "self, needs"),
-    ("debts", "debt", "debts"),
+    ("debts", "debts", "debt"),
     ("anya", "anya", "Anya"),
     ("subscriptions", "subscriptions", "sub, subs"),
     ("others", "others", "other")

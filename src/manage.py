@@ -1,16 +1,18 @@
 """ Telegram Bot server. """
 
-import os
 import logging
-import aiohttp
 import settings
 from aiogram import Bot, Dispatcher, executor
-
 from src.middlewares import AccessMiddleware
-from src.database import state_database
+from src.db.core import database_state, fetchall_explain
+from src.categories import Categories
+
+print(fetchall_explain())
+print(Categories().get_categories())
+
 
 print("Checking database state: ")
-state_database()
+database_state()
 
 logging.basicConfig(level=logging.INFO)
 
@@ -20,7 +22,7 @@ dp.middleware.setup(AccessMiddleware(settings.ACCESS_ID))
 
 
 @dp.message_handler(commands=["start", "help"])
-async def start_help_command(message):
+async def start_help_command(message) -> None:
     """ Shows /start and /help message. """
 
     await message.answer(
@@ -35,42 +37,42 @@ async def start_help_command(message):
 
 
 @dp.message_handler()
-async def add_expenses(message):
+async def add_expenses(message) -> None:
     """ Function which adds expense. """
 
     pass
 
 
 @dp.message_handler(commands=["categories"])
-async def categories(message):
+async def categories(message) -> None:
     """ Shows all categories. """
 
     pass
 
 
 @dp.message_handler(commands=["today"])
-async def today_expenses(message):
+async def today_expenses(message) -> None:
     """ Shows expenses summary for today. """
 
     pass
 
 
 @dp.message_handler(commands=["month"])
-async def month_expenses(message):
+async def month_expenses(message) -> None:
     """ Shows expenses summary for this month. """
 
     pass
 
 
 @dp.message_handler(lambda message: message.text.startwith("/delete"))
-async def delete_expenses(message):
+async def delete_expenses(message) -> None:
     """ Deletes chosen expense. """
 
     pass
 
 
 @dp.message_handler(commands=["last"])
-async def last_expenses(message):
+async def last_expenses(message) -> None:
     """ Shows last 5 expenses. """
 
     pass
