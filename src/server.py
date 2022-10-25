@@ -15,7 +15,7 @@ dp.middleware.setup(AccessMiddleware(settings.ACCESS_ID))
 
 
 @dp.message_handler(commands=["start", "help"])
-async def start_command(message) -> None:
+async def start_command(message: types.Message) -> None:
     """ Shows /start and /help message. """
 
     await message.answer(
@@ -30,7 +30,7 @@ async def start_command(message) -> None:
 
 
 @dp.message_handler(commands="categories")
-async def show_categories(message) -> None:
+async def show_categories(message: types.Message) -> None:
     """ Shows all categories. """
 
     categories = Categories().get_categories()
@@ -41,28 +41,28 @@ async def show_categories(message) -> None:
 
 
 @dp.message_handler(commands=["today"])
-async def today_expenses(message) -> None:
+async def today_expenses(message: types.Message) -> None:
     """ Shows expenses summary for today. """
 
     pass
 
 
 @dp.message_handler(commands=["month"])
-async def month_expenses(message) -> None:
+async def month_expenses(message: types.Message) -> None:
     """ Shows expenses summary for this month. """
 
     pass
 
 
 @dp.message_handler(commands=["last"])
-async def last_expenses(message) -> None:
+async def last_expenses(message: types.Message) -> None:
     """ Shows last 5 expenses. """
 
     pass
 
 
 @dp.message_handler(lambda message: message.text.startwith("/delete"))
-async def delete_expenses(message) -> None:
+async def delete_expenses(message: types.Message) -> None:
     """ Deletes chosen expense. """
 
     pass
