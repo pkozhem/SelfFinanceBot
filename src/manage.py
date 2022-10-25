@@ -1,77 +1,16 @@
-""" Telegram Bot server. """
+""" Telegram Bot manager. """
 
-import logging
-from aiogram import Bot, Dispatcher, executor
-from src import settings
+import src.server
+from aiogram import executor
 from src.db.core import database_state
-from src.middlewares import AccessMiddleware
 
 
-database_state()
-
-logging.basicConfig(level=logging.INFO)
-
-bot = Bot(token=settings.API_TOKEN)
-dp = Dispatcher(bot)
-dp.middleware.setup(AccessMiddleware(settings.ACCESS_ID))
-
-
-@dp.message_handler(commands=["start", "help"])
-async def start_help_command(message) -> None:
-    """ Shows /start and /help message. """
-
-    await message.answer(
-        "Welcome to Self Finance Bot!\n\n"
-        "Add expense: 5 food\n"
-        "Categories: /categories\n"
-        "Today expenses: /today\n"
-        "Last month expenses: /month\n"
-        "Last 5 expenses: /last\n"
-        "Delete expense: /delete expense_id"
-    )
-
-
-@dp.message_handler()
-async def add_expenses(message) -> None:
-    """ Function which adds expense. """
-
-    pass
-
-
-@dp.message_handler(commands=["categories"])
-async def categories(message) -> None:
-    """ Shows all categories. """
-
-    pass
-
-
-@dp.message_handler(commands=["today"])
-async def today_expenses(message) -> None:
-    """ Shows expenses summary for today. """
-
-    pass
-
-
-@dp.message_handler(commands=["month"])
-async def month_expenses(message) -> None:
-    """ Shows expenses summary for this month. """
-
-    pass
-
-
-@dp.message_handler(lambda message: message.text.startwith("/delete"))
-async def delete_expenses(message) -> None:
-    """ Deletes chosen expense. """
-
-    pass
-
-
-@dp.message_handler(commands=["last"])
-async def last_expenses(message) -> None:
-    """ Shows last 5 expenses. """
-
-    pass
+def dispatcher_register():
+    src.server.dp.register_message_handler(src.server.start_command, commands=["start", "help"])
+    src.server.dp.register_message_handler(src.server.show_categories, commands="categories")
 
 
 if __name__ == "__main__":
-    executor.start_polling(dp, skip_updates=True)
+    database_state()
+    dispatcher_register()
+    executor.start_polling(src.server.dp, skip_updates=True)
