@@ -1,8 +1,12 @@
+""" Telegram Bot middlewares. """
+
 from aiogram.dispatcher.handler import CancelHandler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 
 
 class AccessMiddleware(BaseMiddleware):
+    """ Class checks if telegram user's id matches with ACCESS_ID. """
+
     def __init__(self, access_id):
         super().__init__()
         self.access_id = access_id

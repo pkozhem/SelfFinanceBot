@@ -1,3 +1,5 @@
+""" Telegram Bot server. """
+
 import os
 import logging
 import aiohttp
@@ -19,6 +21,8 @@ dp.middleware.setup(AccessMiddleware(settings.ACCESS_ID))
 
 @dp.message_handler(commands=["start", "help"])
 async def start_help_command(message):
+    """ Shows /start and /help message. """
+
     await message.answer(
         "Welcome to Self Finance Bot!\n\n"
         "Add expense: 5 food\n"
@@ -32,31 +36,43 @@ async def start_help_command(message):
 
 @dp.message_handler()
 async def add_expenses(message):
+    """ Function which adds expense. """
+
     pass
 
 
 @dp.message_handler(commands=["categories"])
 async def categories(message):
+    """ Shows all categories. """
+
     pass
 
 
 @dp.message_handler(commands=["today"])
 async def today_expenses(message):
+    """ Shows expenses summary for today. """
+
     pass
 
 
 @dp.message_handler(commands=["month"])
 async def month_expenses(message):
+    """ Shows expenses summary for this month. """
+
     pass
 
 
 @dp.message_handler(lambda message: message.text.startwith("/delete"))
 async def delete_expenses(message):
+    """ Deletes chosen expense. """
+
     pass
 
 
 @dp.message_handler(commands=["last"])
 async def last_expenses(message):
+    """ Shows last 5 expenses. """
+
     pass
 
 
