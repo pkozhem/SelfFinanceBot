@@ -4,11 +4,7 @@ import logging
 import settings
 from aiogram import Bot, Dispatcher, executor
 from src.middlewares import AccessMiddleware
-from src.db.core import database_state, fetchall_explain
-from src.categories import Categories
-
-print(fetchall_explain())
-print(Categories().get_categories())
+from src.db.core import database_state
 
 
 print("Checking database state: ")

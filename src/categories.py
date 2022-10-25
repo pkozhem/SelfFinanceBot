@@ -5,7 +5,7 @@ import db.core
 
 
 class CategoryLayout(NamedTuple):
-    """ Layout of category in Python variables. """
+    """ Layout of category in Python data. """
 
     id_category: str
     name: str
