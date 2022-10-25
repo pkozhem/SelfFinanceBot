@@ -72,6 +72,7 @@ def _database_initialize() -> None:
 def database_state() -> None:
     """ Checks if database exists. If it doesn't, creates it. """
 
+    print("Checking database state: ")
     cursor.execute("SELECT name FROM sqlite_master "
                    "WHERE type='table' AND name='Expense'")
     database_exists = cursor.fetchall()

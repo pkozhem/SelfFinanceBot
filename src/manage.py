@@ -1,13 +1,12 @@
 """ Telegram Bot server. """
 
 import logging
-import settings
 from aiogram import Bot, Dispatcher, executor
-from src.middlewares import AccessMiddleware
+from src import settings
 from src.db.core import database_state
+from src.middlewares import AccessMiddleware
 
 
-print("Checking database state: ")
 database_state()
 
 logging.basicConfig(level=logging.INFO)
