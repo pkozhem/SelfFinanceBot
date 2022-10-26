@@ -8,16 +8,27 @@ it locally. Installation guide below.
 
 ---
 
+<h3> Fast overview </h3>
+
+ - /start, /help - shows welcome message.
+ - /categories - shows all categories and theirs aliases.
+ - /today - shows all expenses for today.
+ - /month - shows all expenses for this month.
+ - /last - shows last 5 messages.
+ - /delete{id} - deletes an expense by its id.
+ - {price} {category name} - adds an expense.
+
+---
+
 <h3> Stack of technologies </h3>
 
-1) Python ≥ 3.10
-2) aiogram
-3) sqlite3
+ - Python ≥ 3.10
+ - aiogram
+ - sqlite3
 
 ---
 
 <h3> Installation guide for Linux/GNU OS </h3>
-
 
 1) Create your own Telegram Bot using
    <a href="https://t.me/BotFather">Bot Father</a>.
