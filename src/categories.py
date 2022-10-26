@@ -1,7 +1,7 @@
 """ Logic with categories. """
 
-from typing import NamedTuple
 import db.core
+from typing import NamedTuple
 
 
 class CategoryLayout(NamedTuple):

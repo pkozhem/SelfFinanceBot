@@ -30,7 +30,7 @@ def delete_data(table: str, pk: int) -> None:
 
     cursor.execute(
         f"DELETE FROM {table} "
-        f"WHERE id={pk}"
+        f"WHERE id_expense = {pk}"
     )
     connection.commit()
 
@@ -57,6 +57,7 @@ def fetchall_data(table: str, fields: list[str]) -> list[dict]:
 
 def get_cursor() -> cursor:
     """ Returns database cursor. """
+
     return cursor
 
 
@@ -82,19 +83,3 @@ def database_state() -> None:
     print("Creating database ...")
     _database_initialize()
     print("Database created. Starting Bot ...")
-
-
-# Explanation functions.
-
-def fetchall_default() -> cursor:
-    cursor.execute(
-        "SELECT id_category, name, aliases "
-        "FROM Category"
-    )
-    return cursor.fetchall()
-
-
-def fetchall_explain() -> None:
-    print(fetchall_default())
-    print(fetchall_data("Category", "id_category, name, aliases".split(",")), "\n")
-    return

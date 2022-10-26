@@ -9,8 +9,8 @@ CREATE TABLE IF NOT EXISTS Category
 CREATE TABLE IF NOT EXISTS Expense
 (
     id_expense INTEGER PRIMARY KEY,
-    expense_text TEXT,
     price INTEGER,
+    expense_category TEXT,
     date_created DATETIME,
     id_category INTEGER,
 
