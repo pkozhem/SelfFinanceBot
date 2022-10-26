@@ -84,6 +84,7 @@ async def last_expenses(message: types.Message) -> None:
 @dp.message_handler(lambda message: message.text.startswith('/delete'))
 async def delete_expenses(message: types.Message) -> None:
     """ Deletes chosen expense. """
+
     pk = int(message.text[7:])
     expenses.delete_expense(pk)
     await message.answer("Expense deleted")

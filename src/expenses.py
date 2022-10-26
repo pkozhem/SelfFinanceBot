@@ -4,7 +4,7 @@ import datetime
 from typing import NamedTuple, Optional
 
 from src.settings import TIMEZONE
-from src.db import core, raw
+from src import db
 from src.categories import Categories
 
 
@@ -29,7 +29,7 @@ def add_expense(incoming_message: str) -> Expense:
     parsed_message = _parse_incoming_message(incoming_message)
     category = Categories().get_category(parsed_message.category_message)
 
-    core.insert_data("Expense", {
+    db.core.insert_data("Expense", {
         "price": parsed_message.price_message,
         "expense_category": parsed_message.category_message,
         "date_created": _get_timezone_date_string(),
@@ -46,21 +46,21 @@ def add_expense(incoming_message: str) -> Expense:
 def today_expenses() -> str:
     """ Returns final answer with today expenses. """
 
-    result = raw.today_expenses_query()
+    result = db.raw.today_expenses_query()
     return f"Today expenses: {result}"
 
 
 def month_expenses() -> str:
     """ Returns final answer with month expenses. """
 
-    result = raw.month_expenses_query(_get_timezone_date())
+    result = db.raw.month_expenses_query(_get_timezone_date())
     return f"Month expenses: {result}"
 
 
 def last_expenses() -> list[Expense]:
     """ Returns list of last expenses instances. """
 
-    rows = raw.last_expenses_query()
+    rows = db.raw.last_expenses_query()
 
     last = [Expense(
         id_expense=row[0],
@@ -73,7 +73,7 @@ def last_expenses() -> list[Expense]:
 def delete_expense(pk: int) -> str:
     """ Deletes an expense by its id. """
 
-    core.delete_data("Expense", pk)
+    db.core.delete_data("Expense", pk)
     return "Expense deleted."
 
 
